@@ -1,3 +1,9 @@
+-- 4️⃣ X-RAY BASE
+_G.WXV = _G.WXV or {}
+_G.WXV.XRAY_BASE = _G.WXV.XRAY_BASE or false
+if not _G.WXV.XRAY_BASE then return end
+
+-- Código do X-RAY BASE aqui
 -- SERVICES
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
