@@ -1,0 +1,28 @@
+-- SERVICES
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local player = Players.LocalPlayer
+
+-- CONFIG
+local transparency = 0.7
+local xrayParts = {}
+
+-- FUNÇÃO X-RAY BASE
+local function applyXray(part)
+	if part:IsA("BasePart") and not part:IsDescendantOf(player.Character) then
+		if part.Name:lower():find("base") then
+			if not xrayParts[part] then
+				xrayParts[part] = part.LocalTransparencyModifier
+				part.LocalTransparencyModifier = transparency
+			end
+		end
+	end
+end
+
+-- APLICAR X-RAY PARA PARTS EXISTENTES
+for _, part in ipairs(Workspace:GetDescendants()) do
+	applyXray(part)
+end
+
+-- MONITORAR NOVOS PARTS
+Workspace.DescendantAdded:Connect(applyXray)
